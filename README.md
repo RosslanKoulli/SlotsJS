@@ -1,0 +1,2 @@
+# SlotsJS
+ Slots machine javascript
