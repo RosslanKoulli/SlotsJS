@@ -17,11 +17,33 @@ const deposit = () => {
         
         if(isNaN(numberDepositAmount) || numberDepositAmount <= 0){
             console.log("Invalid deposit amount, try again.")
-        } else {
+        } 
+
+        else {
             return numberDepositAmount;
         }
     } 
 };
 
+//STEP 2
+const getNumberOfLInes = () => {
+    while(true){
+        const lines = prompt("Enter a number of lines to bet on (1-3): ")
+        const numberOfLines = parseFloat(lines);
+        
+        if(isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines > 3){
+            console.log("Invalid deposit amount, try again.")
+        } 
+
+        else {
+            return numberOfLines;
+        }
+    } 
+};
+
+
+
+
 const depositAmount = deposit();
 
+const numberOfLines = getNumberOfLInes();
