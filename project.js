@@ -151,14 +151,37 @@ const getWinnings = (rows, bet, lines ) => {
     return winnings;
 };
 
+//STEP 7  Create an exit and not enough money feature
+const game = () => {
+    let balance = deposit();  //Changing to let allows us to change the values of the varaibles since not constant `const`
 
+    while(true) {
+        console.log("You have a balance of $ "+ balance);
+        const numberOfLines = getNumberOfLInes();
+        const bet = getBet(balance, numberOfLines );
+        balance -= bet * numberOfLines;
+        const reels = spin();
+        const rows = transpose(reels);
+        printRows(rows);
+        const winnings = getWinnings(rows,bet, numberOfLines);
+        balance += winnings;
+        console.log("You won, $" + winnings.toString());
+        
+        if(balance <= 0){
+            console.log("you ran out of money! \nGoodbye dusty, see you when you got more money.")
+            break;  
+        }
+        
+        const playAgain = prompt("Do you want to pay again? (y,n)? ")
 
-
-let balance = deposit();    //Changing to let allows us to change the values of the varaibles since not constant `const`
-const numberOfLines = getNumberOfLInes();
-const bet = getBet(balance, numberOfLines );
-const reels = spin();
-const rows = transpose(reels);
-printRows(rows);
-const winnings = getWinnings(rows,bet, numberOfLines);
-console.log("You won, $" + winnings.toString());
+        if (playAgain != "y"){
+            console.log("C'mon you know that fortune favors the persistent player; each bet is a step close to victory.");
+            const playAgain = prompt("Do you want to pay again? (y,n)? ")
+            if (playAgain != "y"){
+                break;
+            }
+       
+        }   
+    }
+}
+game();
